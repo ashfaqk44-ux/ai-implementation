@@ -19,6 +19,8 @@ never uses them.
 estate agent logging a note) and let tests inspect or reset the mock.
 
 Run: uvicorn mock_pixxi.app:app --port 8001
+Seed dataset instead of the default fixtures: set MOCK_FIXTURES_DIR=data/synthetic/seed
+(any of leads.json, listings.json, agents.json, activity_logs.json found there replaces the default).
 """
 
 from __future__ import annotations
@@ -81,8 +83,12 @@ def http_dispatcher(url: str, payload: dict) -> None:
         log.warning("webhook delivery to %s failed: %s", url, exc)
 
 
-def _load(name: str) -> list[dict]:
-    return json.loads((FIXTURES / name).read_text(encoding="utf-8"))
+def _load(name: str, fixtures_dir: Path | None = None) -> list[dict]:
+    """Load a fixture file, preferring the dataset folder when it has one."""
+    for folder in (fixtures_dir, FIXTURES):
+        if folder is not None and (folder / name).exists():
+            return json.loads((folder / name).read_text(encoding="utf-8"))
+    return []
 
 
 def _range(value: Any) -> tuple[float | None, float | None]:
@@ -105,14 +111,17 @@ def _paginate(items: list, page: int, size: int) -> tuple[list, int]:
 
 
 class MockState:
-    def __init__(self) -> None:
+    def __init__(self, fixtures_dir: Path | None = None) -> None:
+        self.fixtures_dir = fixtures_dir
         self.reset()
 
     def reset(self) -> None:
-        self.leads: dict[int, dict] = {l["id"]: l for l in _load("leads.json")}
-        self.listings: dict[int, dict] = {p["id"]: p for p in _load("listings.json")}
-        self.agents: list[dict] = _load("agents.json")
-        self.logs: list[dict] = _load("activity_logs.json")
+        d = self.fixtures_dir
+        self.leads: dict[int, dict] = {l["id"]: l for l in _load("leads.json", d)}
+        self.listings: dict[int, dict] = {p["id"]: p for p in _load("listings.json", d)}
+        self.agents: list[dict] = _load("agents.json", d)
+        # A dataset folder without activity logs starts with none (not the default fixture logs).
+        self.logs: list[dict] = _load("activity_logs.json", d) if d is None or (d / "activity_logs.json").exists() else []
         self.reminders: list[dict] = []
         self.subscriptions: list[dict] = []
         self.forbidden_calls: list[dict] = []
@@ -127,7 +136,10 @@ class MockState:
 def create_app(
     dispatcher: Dispatcher | None = None,
     enforce_rate_limit: bool | None = None,
+    fixtures_dir: Path | str | None = None,
 ) -> FastAPI:
+    if fixtures_dir is None and os.getenv("MOCK_FIXTURES_DIR"):
+        fixtures_dir = os.environ["MOCK_FIXTURES_DIR"]
     if enforce_rate_limit is None:
         enforce_rate_limit = os.getenv("MOCK_ENFORCE_RATE_LIMIT", "").lower() in ("1", "true", "yes")
     app = FastAPI(
@@ -137,7 +149,7 @@ def create_app(
         "`/mock/*` endpoints are not part of Pixxi; they simulate humans.",
         dependencies=[Security(TOKEN_SCHEME)],
     )
-    state = MockState()
+    state = MockState(Path(fixtures_dir) if fixtures_dir is not None else None)
     app.state.mock = state
     app.state.dispatcher = dispatcher or http_dispatcher
     read_times: dict[str, deque] = {}

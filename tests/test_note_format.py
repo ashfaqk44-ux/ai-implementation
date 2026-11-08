@@ -44,3 +44,14 @@ def test_reminder_title_marker_is_flagged():
 def test_tampered_trailer_is_not_trusted():
     message = note().to_message().replace('"ai_generated":true', '"ai_generated":false')
     assert parse_message(message) is None
+
+
+def test_action_items_render_as_list_and_round_trip():
+    n = note(action_items=["What is the purchase timeline?", "Cash or mortgage?"])
+    message = n.to_message()
+    assert "Please confirm with the client and log a note:\n- What is the purchase timeline?\n- Cash or mortgage?" in message
+    assert parse_message(message) == n
+
+
+def test_empty_action_items_keep_the_original_json_shape():
+    assert '"action_items"' not in note().to_json()

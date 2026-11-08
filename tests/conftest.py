@@ -6,6 +6,7 @@ TestClient, so the full loop (write -> Pixxi event -> receiver decision) runs wi
 
 from __future__ import annotations
 
+from pathlib import Path
 from urllib.parse import urlsplit
 
 import pytest
@@ -35,6 +36,12 @@ def settings(tmp_path) -> Settings:
         webhook_public_base_url=RECEIVER_BASE,
         audit_log=tmp_path / "audit" / "writes.jsonl",
         state_db=tmp_path / "middleware.sqlite",
+        eval_runs_dir=tmp_path / "runs",
+        # Never pick up a real key from the environment: offline tests must not call the API.
+        llm_provider="openai",
+        llm_model="gpt-4.1-mini",
+        openai_api_key=None,
+        anthropic_api_key=None,
     )
 
 
@@ -90,3 +97,63 @@ def subscribed(http):
         http.request("POST", "/pixxiapi/webhook/v1/subscribe", kind="write",
                      json={"event": event, "callbackUrl": f"{RECEIVER_BASE}{callback_path(event)}?key={SECRET}"})
     return True
+
+
+# -- step 4: seed dataset + receiver + orchestrator, wired in-process ----------------------
+SEED_DIR = Path(__file__).resolve().parent.parent / "data" / "synthetic" / "seed"
+
+
+class Pipeline:
+    """Seed-data mock -> webhook receiver -> orchestrator -> agents -> write client -> mock."""
+
+    def __init__(self, settings: Settings, store: MiddlewareStore, llm):
+        from src.main import build_orchestrator
+
+        self.orchestrator = None
+        receiver_app = create_receiver(settings=settings, store=store,
+                                       handler=lambda event: self.orchestrator.handle(event))
+        self.receiver = TestClient(receiver_app).__enter__()
+
+        def dispatch(url: str, payload: dict) -> None:
+            parts = urlsplit(url)
+            self.receiver.post(f"{parts.path}?{parts.query}", json=payload)
+
+        self.mock_app = create_mock(dispatcher=dispatch, fixtures_dir=SEED_DIR)
+        self.mock = TestClient(self.mock_app).__enter__()
+        http = PixxiHttp(settings, client=self.mock)
+        self.read_tools = ReadTools(settings=settings, http=http)
+        self.write_client = WriteClient(store=store, settings=settings, http=http)
+        self.llm = llm
+        self.store = store
+        self.orchestrator = build_orchestrator(settings, store, self.read_tools, self.write_client, llm)
+        for event in EVENT_SLUGS.values():
+            http.request("POST", "/pixxiapi/webhook/v1/subscribe", kind="write",
+                         json={"event": event, "callbackUrl": f"{RECEIVER_BASE}{callback_path(event)}?key={SECRET}"})
+
+    @property
+    def state(self):
+        return self.mock_app.state.mock
+
+    def notes_for(self, lead_id: int) -> list[dict]:
+        return [log for log in self.state.logs if log["leadId"] == lead_id]
+
+    def close(self) -> None:
+        self.mock.__exit__(None, None, None)
+        self.receiver.__exit__(None, None, None)
+
+
+@pytest.fixture
+def make_pipeline(settings, store):
+    from src.llm.service import LLMService
+
+    created: list[Pipeline] = []
+
+    def make(llm=None, settings_override: Settings | None = None) -> Pipeline:
+        s = settings_override or settings
+        p = Pipeline(s, store, llm or LLMService(s, log_path=s.eval_runs_dir / "llm_calls.jsonl"))
+        created.append(p)
+        return p
+
+    yield make
+    for p in created:
+        p.close()

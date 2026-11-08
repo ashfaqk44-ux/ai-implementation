@@ -34,3 +34,9 @@ package = false
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+# Tests marked `live` call the real LLM API (costs money): run them explicitly with
+#   uv run pytest -m live
+addopts = "-m 'not live'"
+markers = [
+    "live: calls the real LLM API (spends credit); deselected by default",
+]

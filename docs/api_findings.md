@@ -66,6 +66,7 @@ assumes the worst case.
 - **Missing-token behaviour** is undocumented; the mock returns 401.
 - **`/agent/list`** and **`/reminder/list`** response shapes are undocumented; the mock uses the standard list envelope.
 - The **Pixxi matching endpoint** returns `matchRate` (0–100) with per-field scores (BUDGET, LOCATION, ROOMS, ...). The mock's scoring is a simple stand-in, not Pixxi's algorithm.
+- **Lead stage (`tagId`)** values are tenant-specific and undocumented. The seed dataset and mock assume 39 new, 40 contacted, 41 qualified, 42 dormant (unverified).
 - Lead records carry `nationality`, `gender` and `birthdate`. These are excluded from scoring by `Lead.scoring_view()`.
 
 ## To verify on first real-API access

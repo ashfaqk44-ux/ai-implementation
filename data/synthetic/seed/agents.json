@@ -1,0 +1,20 @@
+[
+  {
+    "id": 2031,
+    "name": "Synthetic Agent A",
+    "email": "agent.a@example.invalid",
+    "phone": "+971509000001"
+  },
+  {
+    "id": 2032,
+    "name": "Synthetic Agent B",
+    "email": "agent.b@example.invalid",
+    "phone": "+971509000002"
+  },
+  {
+    "id": 2033,
+    "name": "Synthetic Agent C",
+    "email": "agent.c@example.invalid",
+    "phone": "+971509000003"
+  }
+]

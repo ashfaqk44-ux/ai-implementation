@@ -1,0 +1,233 @@
+[
+  {
+    "id": 910001,
+    "createBy": 2031,
+    "updateBy": 2031,
+    "createTime": "2026-11-07 22:00:00",
+    "updateTime": "2026-11-07 22:00:00",
+    "clientType": "RENT",
+    "tagId": 39,
+    "name": "Synthetic Lead S01",
+    "phone": "+971500100001",
+    "email": "seed01@example.invalid",
+    "nationality": "India",
+    "gender": "UNKNOWN",
+    "houseType": [
+      "APARTMENT"
+    ],
+    "rooms": "Studio|1",
+    "budget": "50000|70000",
+    "size": "600|975",
+    "payMethod": null,
+    "regionId": 83,
+    "communityId": 701,
+    "region": "Jumeirah Village Circle",
+    "community": "District 12",
+    "clientSource": "BAYUT",
+    "status": "ACTIVE",
+    "agentId": 2031,
+    "agentInfo": {
+      "id": 2031,
+      "name": "Synthetic Agent A",
+      "email": "agent.a@example.invalid",
+      "phone": "+971509000001"
+    },
+    "projectType": [
+      "COMPLETED"
+    ],
+    "buyerType": null,
+    "notes": "Enquired via Bayut about 'Synthetic 1BR For rent Apartment, Jumeirah Village Circle'.",
+    "property": {
+      "id": 352014,
+      "propertyId": "1003100352014",
+      "title": "Synthetic 1BR For rent Apartment, Jumeirah Village Circle"
+    },
+    "reminderCount": 0,
+    "isDuplicated": false,
+    "customFields": null
+  },
+  {
+    "id": 910004,
+    "createBy": 2031,
+    "updateBy": 2031,
+    "createTime": "2026-11-09 07:26:00",
+    "updateTime": "2026-11-09 07:26:00",
+    "clientType": "BUY",
+    "tagId": 39,
+    "name": "Synthetic Lead S04",
+    "phone": "+971500100004",
+    "email": "seed04@example.invalid",
+    "nationality": "Russia",
+    "gender": "UNKNOWN",
+    "houseType": [
+      "APARTMENT"
+    ],
+    "rooms": "2|3",
+    "budget": "1760000|2210000",
+    "size": "920|1495",
+    "payMethod": "CASH",
+    "regionId": 70,
+    "communityId": 601,
+    "region": "Dubai Marina",
+    "community": "Marina Promenade",
+    "clientSource": "CLIENT_REFERRAL",
+    "status": "ACTIVE",
+    "agentId": 2031,
+    "agentInfo": {
+      "id": 2031,
+      "name": "Synthetic Agent A",
+      "email": "agent.a@example.invalid",
+      "phone": "+971509000001"
+    },
+    "projectType": [
+      "OFF_PLAN"
+    ],
+    "buyerType": "OWNED",
+    "notes": "Referred by an existing client.",
+    "property": null,
+    "reminderCount": 0,
+    "isDuplicated": false,
+    "customFields": null
+  },
+  {
+    "id": 910006,
+    "createBy": 2033,
+    "updateBy": 2033,
+    "createTime": "2026-11-08 06:07:00",
+    "updateTime": "2026-11-08 06:07:00",
+    "clientType": "BUY",
+    "tagId": 39,
+    "name": "Synthetic Lead S06",
+    "phone": "+971500100006",
+    "email": "seed06@example.invalid",
+    "nationality": "Egypt",
+    "gender": "UNKNOWN",
+    "houseType": [
+      "APARTMENT"
+    ],
+    "rooms": "1|2",
+    "budget": "1170000|1530000",
+    "size": "920|1495",
+    "payMethod": "MORTGAGE",
+    "regionId": 83,
+    "communityId": 701,
+    "region": "Jumeirah Village Circle",
+    "community": "District 12",
+    "clientSource": "SOCIAL_MEDIA",
+    "status": "ACTIVE",
+    "agentId": 2033,
+    "agentInfo": {
+      "id": 2033,
+      "name": "Synthetic Agent C",
+      "email": "agent.c@example.invalid",
+      "phone": "+971509000003"
+    },
+    "projectType": [
+      "OFF_PLAN"
+    ],
+    "buyerType": "INVESTOR",
+    "notes": "Instagram ad form submission. Ad for 'Synthetic 2BR Off-plan Apartment, Jumeirah Village Circle'.",
+    "property": {
+      "id": 352004,
+      "propertyId": "1003100352004",
+      "title": "Synthetic 2BR Off-plan Apartment, Jumeirah Village Circle"
+    },
+    "reminderCount": 0,
+    "isDuplicated": false,
+    "customFields": null
+  },
+  {
+    "id": 910008,
+    "createBy": 2032,
+    "updateBy": 2032,
+    "createTime": "2026-11-07 21:35:00",
+    "updateTime": "2026-11-07 21:35:00",
+    "clientType": "BUY",
+    "tagId": 39,
+    "name": "Synthetic Lead S08",
+    "phone": "+971500100008",
+    "email": "seed08@example.invalid",
+    "nationality": "Saudi Arabia",
+    "gender": "UNKNOWN",
+    "houseType": [
+      "APARTMENT"
+    ],
+    "rooms": "2|3",
+    "budget": "1250000|1710000",
+    "size": "920|1495",
+    "payMethod": null,
+    "regionId": 48,
+    "communityId": 388,
+    "region": "Business Bay",
+    "community": "The Metropolis Tower",
+    "clientSource": "PROPERTY_FINDER",
+    "status": "ACTIVE",
+    "agentId": 2032,
+    "agentInfo": {
+      "id": 2032,
+      "name": "Synthetic Agent B",
+      "email": "agent.b@example.invalid",
+      "phone": "+971509000002"
+    },
+    "projectType": [
+      "OFF_PLAN"
+    ],
+    "buyerType": "INVESTOR",
+    "notes": "Enquired via Property Finder about 'Synthetic 2BR Off-plan Apartment, Business Bay'.",
+    "property": {
+      "id": 352002,
+      "propertyId": "1003100352002",
+      "title": "Synthetic 2BR Off-plan Apartment, Business Bay"
+    },
+    "reminderCount": 0,
+    "isDuplicated": false,
+    "customFields": null
+  },
+  {
+    "id": 910010,
+    "createBy": 2031,
+    "updateBy": 2031,
+    "createTime": "2026-11-08 15:18:00",
+    "updateTime": "2026-11-08 15:18:00",
+    "clientType": "BUY",
+    "tagId": 39,
+    "name": "Synthetic Lead S10",
+    "phone": "+971500100010",
+    "email": "seed10@example.invalid",
+    "nationality": "France",
+    "gender": "UNKNOWN",
+    "houseType": [
+      "APARTMENT"
+    ],
+    "rooms": "1|2",
+    "budget": "3120000|4400000",
+    "size": "1000|1625",
+    "payMethod": "MORTGAGE",
+    "regionId": 52,
+    "communityId": 420,
+    "region": "Downtown Dubai",
+    "community": "Opera District",
+    "clientSource": "PROPERTY_FINDER",
+    "status": "ACTIVE",
+    "agentId": 2031,
+    "agentInfo": {
+      "id": 2031,
+      "name": "Synthetic Agent A",
+      "email": "agent.a@example.invalid",
+      "phone": "+971509000001"
+    },
+    "projectType": [
+      "COMPLETED"
+    ],
+    "buyerType": "OWNED",
+    "notes": "Enquired via Property Finder about 'Synthetic 2BR Ready Apartment, Downtown Dubai'.",
+    "property": {
+      "id": 352012,
+      "propertyId": "1003100352012",
+      "title": "Synthetic 2BR Ready Apartment, Downtown Dubai"
+    },
+    "reminderCount": 0,
+    "isDuplicated": false,
+    "customFields": null
+  }
+]

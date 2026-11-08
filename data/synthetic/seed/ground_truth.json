@@ -1,0 +1,172 @@
+{
+  "seed": 4,
+  "reference_time": "2026-11-09 10:00:00",
+  "stage_tag_map": {
+    "new": 39,
+    "contacted": 40,
+    "qualified": 41,
+    "dormant": 42
+  },
+  "leads": [
+    {
+      "lead_id": 910001,
+      "stage": "new",
+      "compliance": "low",
+      "source_group": "portal",
+      "product": "rent_apartment",
+      "has_listing": true,
+      "budget_consistent_with_listing": true,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910002,
+      "stage": "dormant",
+      "compliance": "high",
+      "source_group": "social_media",
+      "product": "villa",
+      "has_listing": true,
+      "budget_consistent_with_listing": true,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910003,
+      "stage": "dormant",
+      "compliance": "high",
+      "source_group": "portal",
+      "product": "ready_apartment",
+      "has_listing": true,
+      "budget_consistent_with_listing": true,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910004,
+      "stage": "new",
+      "compliance": "high",
+      "source_group": "client_referral",
+      "product": "offplan_apartment",
+      "has_listing": false,
+      "budget_consistent_with_listing": null,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910005,
+      "stage": "contacted",
+      "compliance": "low",
+      "source_group": "portal",
+      "product": "offplan_apartment",
+      "has_listing": true,
+      "budget_consistent_with_listing": true,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910006,
+      "stage": "new",
+      "compliance": "low",
+      "source_group": "social_media",
+      "product": "offplan_apartment",
+      "has_listing": true,
+      "budget_consistent_with_listing": true,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910007,
+      "stage": "contacted",
+      "compliance": "high",
+      "source_group": "social_media",
+      "product": "villa",
+      "has_listing": false,
+      "budget_consistent_with_listing": null,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910008,
+      "stage": "new",
+      "compliance": "high",
+      "source_group": "portal",
+      "product": "offplan_apartment",
+      "has_listing": true,
+      "budget_consistent_with_listing": false,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910009,
+      "stage": "qualified",
+      "compliance": "high",
+      "source_group": "portal",
+      "product": "rent_apartment",
+      "has_listing": true,
+      "budget_consistent_with_listing": true,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910010,
+      "stage": "new",
+      "compliance": "high",
+      "source_group": "portal",
+      "product": "ready_apartment",
+      "has_listing": true,
+      "budget_consistent_with_listing": true,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910011,
+      "stage": "contacted",
+      "compliance": "high",
+      "source_group": "portal",
+      "product": "offplan_apartment",
+      "has_listing": true,
+      "budget_consistent_with_listing": false,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910012,
+      "stage": "contacted",
+      "compliance": "high",
+      "source_group": "client_referral",
+      "product": "offplan_apartment",
+      "has_listing": false,
+      "budget_consistent_with_listing": null,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910013,
+      "stage": "contacted",
+      "compliance": "low",
+      "source_group": "client_referral",
+      "product": "offplan_apartment",
+      "has_listing": true,
+      "budget_consistent_with_listing": true,
+      "sparse_portal_data": false
+    },
+    {
+      "lead_id": 910014,
+      "stage": "contacted",
+      "compliance": "low",
+      "source_group": "exhibition",
+      "product": "offplan_apartment",
+      "has_listing": false,
+      "budget_consistent_with_listing": null,
+      "sparse_portal_data": true
+    },
+    {
+      "lead_id": 910015,
+      "stage": "qualified",
+      "compliance": "high",
+      "source_group": "cold_call",
+      "product": "offplan_apartment",
+      "has_listing": false,
+      "budget_consistent_with_listing": null,
+      "sparse_portal_data": true
+    },
+    {
+      "lead_id": 910016,
+      "stage": "qualified",
+      "compliance": "low",
+      "source_group": "client_referral",
+      "product": "offplan_apartment",
+      "has_listing": false,
+      "budget_consistent_with_listing": null,
+      "sparse_portal_data": false
+    }
+  ]
+}

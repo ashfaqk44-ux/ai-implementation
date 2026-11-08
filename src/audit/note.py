@@ -6,6 +6,8 @@ machine-readable trailer line holding the full JSON:
 
     [AI agent_3_scoring] Score 78 (high confidence)
     Rationale: Confirmed budget and timeline in note of 3 Nov.
+    Please confirm with the client and log a note:     (only if action_items is set)
+    - ...
     -- pixxi-agent-note/1 {"schema": "pixxi-agent-note/1", "ai_generated": true, ...}
 
 The trailer is what the webhook receiver (self-write filter) and the dormancy logic look
@@ -45,18 +47,23 @@ class AgentNote(BaseModel):
     input_signals: dict[str, Any] = Field(default_factory=dict)
     decision: dict[str, Any] = Field(default_factory=dict)
     rationale: str
+    # Optional asks for the real estate agent (e.g. Agent 1's details to confirm). Rendered
+    # as a bullet list; left out of the JSON when empty so older notes keep the same shape.
+    action_items: list[str] = Field(default_factory=list)
 
     def to_json(self) -> str:
-        return json.dumps(
-            self.model_dump(mode="json", by_alias=True), ensure_ascii=True, separators=(",", ":")
-        )
+        data = self.model_dump(mode="json", by_alias=True)
+        if not data["action_items"]:
+            del data["action_items"]
+        return json.dumps(data, ensure_ascii=True, separators=(",", ":"))
 
     def to_message(self) -> str:
-        return (
-            f"[AI {self.agent_id}] {self.summary}\n"
-            f"Rationale: {self.rationale}\n"
-            f"{TRAILER_PREFIX}{self.to_json()}"
-        )
+        lines = [f"[AI {self.agent_id}] {self.summary}", f"Rationale: {self.rationale}"]
+        if self.action_items:
+            lines.append("Please confirm with the client and log a note:")
+            lines.extend(f"- {item}" for item in self.action_items)
+        lines.append(f"{TRAILER_PREFIX}{self.to_json()}")
+        return "\n".join(lines)
 
 
 def parse_message(message: str | None) -> AgentNote | None:

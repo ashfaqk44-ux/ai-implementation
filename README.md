@@ -84,9 +84,10 @@ pixxi-agents/
   pyproject.toml            # dependencies + pytest config (managed with uv)
   uv.lock
   .env.example              # PIXXI_TOKEN, WEBHOOK_SECRET, ANTHROPIC_API_KEY (never committed)
-  scripts/                  # subscribe_webhooks.py
+  scripts/                  # subscribe_webhooks.py, check_llm.py, run_step4_demo.py
   src/
     config.py               # model name, dormancy days, thresholds, paths
+    main.py                 # wires receiver -> orchestrator -> agents (uvicorn src.main:create_app --factory)
     pixxi/                  # C6 read tools, C8 write client, API models (httpx)
     ingest/                 # C3 webhook receiver, C1 scheduler
     orchestrator/           # C4 supervisor, LangGraph graph, C5 checkpoint
@@ -95,7 +96,7 @@ pixxi-agents/
     llm/                    # C7 service, prompt templates (versioned)
     audit/                  # structured note format and logging
   mock_pixxi/               # fake Pixxi server and fixtures
-  data/synthetic/           # lead generator, annotated notes, ground truth
+  data/synthetic/           # lead generator, annotated notes, ground truth (seed/: 16-lead step 4 set)
   eval/                     # scenarios, metric scripts, run logs
   docs/
     pixxi_openapi.yaml      # official Pixxi API spec (ground truth for tests)
@@ -250,3 +251,9 @@ The research proposal still describes the older design. Do not copy these into c
 - The proposal's Section 3.16 describes the orchestrator as a StateGraph with conditional edges. The design is now a supervisor.
 - The proposal has seven agents with a separate Agent 4 (response timing). Agent 4 is now module M1 and the agents are renumbered 1 to 5.
 - The proposal names no vector store; Chroma appeared only in an earlier diagram.
+
+
+
+# private notes
+
+uv run python -m scripts.run_step4_demo

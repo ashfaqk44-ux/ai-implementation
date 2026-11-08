@@ -1,0 +1,537 @@
+[
+  {
+    "id": 352001,
+    "propertyId": "1003100352001",
+    "title": "Synthetic 1BR Off-plan Apartment, Business Bay",
+    "listingType": "NEW",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 1570000,
+    "bedRooms": 1,
+    "size": 780,
+    "region": "Business Bay",
+    "regionId": "48",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "The Metropolis Tower",
+    "communityId": "388",
+    "developer": "Synthetic Developer 2",
+    "developerId": "11",
+    "isFurniture": "NONE",
+    "agent": {
+      "name": "Synthetic Agent C",
+      "email": "agent.c@example.invalid",
+      "phone": "+971509000003"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-09-14 10:00:00",
+    "updateTime": "2026-10-16 10:00:00",
+    "newParam": {
+      "handoverTime": "2028-08-01 00:00:00",
+      "completionStatus": "OFF_PLAN"
+    }
+  },
+  {
+    "id": 352002,
+    "propertyId": "1003100352002",
+    "title": "Synthetic 2BR Off-plan Apartment, Business Bay",
+    "listingType": "NEW",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 2280000,
+    "bedRooms": 2,
+    "size": 1150,
+    "region": "Business Bay",
+    "regionId": "48",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "The Metropolis Tower",
+    "communityId": "388",
+    "developer": "Synthetic Developer 3",
+    "developerId": "12",
+    "isFurniture": "NONE",
+    "agent": {
+      "name": "Synthetic Agent A",
+      "email": "agent.a@example.invalid",
+      "phone": "+971509000001"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-09-23 10:00:00",
+    "updateTime": "2026-11-08 10:00:00",
+    "newParam": {
+      "handoverTime": "2028-09-01 00:00:00",
+      "completionStatus": "OFF_PLAN"
+    }
+  },
+  {
+    "id": 352003,
+    "propertyId": "1003100352003",
+    "title": "Synthetic 1BR Off-plan Apartment, Jumeirah Village Circle",
+    "listingType": "NEW",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 1040000,
+    "bedRooms": 1,
+    "size": 780,
+    "region": "Jumeirah Village Circle",
+    "regionId": "83",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "District 12",
+    "communityId": "701",
+    "developer": "Synthetic Developer 4",
+    "developerId": "13",
+    "isFurniture": "NONE",
+    "agent": {
+      "name": "Synthetic Agent B",
+      "email": "agent.b@example.invalid",
+      "phone": "+971509000002"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-09-25 10:00:00",
+    "updateTime": "2026-11-01 10:00:00",
+    "newParam": {
+      "handoverTime": "2029-09-01 00:00:00",
+      "completionStatus": "OFF_PLAN"
+    }
+  },
+  {
+    "id": 352004,
+    "propertyId": "1003100352004",
+    "title": "Synthetic 2BR Off-plan Apartment, Jumeirah Village Circle",
+    "listingType": "NEW",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 1410000,
+    "bedRooms": 2,
+    "size": 1150,
+    "region": "Jumeirah Village Circle",
+    "regionId": "83",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "District 12",
+    "communityId": "701",
+    "developer": "Synthetic Developer 1",
+    "developerId": "10",
+    "isFurniture": "NONE",
+    "agent": {
+      "name": "Synthetic Agent C",
+      "email": "agent.c@example.invalid",
+      "phone": "+971509000003"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-08-27 10:00:00",
+    "updateTime": "2026-10-13 10:00:00",
+    "newParam": {
+      "handoverTime": "2027-05-01 00:00:00",
+      "completionStatus": "OFF_PLAN"
+    }
+  },
+  {
+    "id": 352005,
+    "propertyId": "1003100352005",
+    "title": "Synthetic 1BR Off-plan Apartment, Dubai Hills Estate",
+    "listingType": "NEW",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 1490000,
+    "bedRooms": 1,
+    "size": 780,
+    "region": "Dubai Hills Estate",
+    "regionId": "66",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "Park Heights",
+    "communityId": "530",
+    "developer": "Synthetic Developer 2",
+    "developerId": "11",
+    "isFurniture": "NONE",
+    "agent": {
+      "name": "Synthetic Agent A",
+      "email": "agent.a@example.invalid",
+      "phone": "+971509000001"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-10-04 10:00:00",
+    "updateTime": "2026-10-13 10:00:00",
+    "newParam": {
+      "handoverTime": "2029-05-01 00:00:00",
+      "completionStatus": "OFF_PLAN"
+    }
+  },
+  {
+    "id": 352006,
+    "propertyId": "1003100352006",
+    "title": "Synthetic 2BR Off-plan Apartment, Dubai Hills Estate",
+    "listingType": "NEW",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 2410000,
+    "bedRooms": 2,
+    "size": 1150,
+    "region": "Dubai Hills Estate",
+    "regionId": "66",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "Park Heights",
+    "communityId": "530",
+    "developer": "Synthetic Developer 3",
+    "developerId": "12",
+    "isFurniture": "NONE",
+    "agent": {
+      "name": "Synthetic Agent B",
+      "email": "agent.b@example.invalid",
+      "phone": "+971509000002"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-08-22 10:00:00",
+    "updateTime": "2026-11-03 10:00:00",
+    "newParam": {
+      "handoverTime": "2028-05-01 00:00:00",
+      "completionStatus": "OFF_PLAN"
+    }
+  },
+  {
+    "id": 352007,
+    "propertyId": "1003100352007",
+    "title": "Synthetic 1BR Off-plan Apartment, Downtown Dubai",
+    "listingType": "NEW",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 2310000,
+    "bedRooms": 1,
+    "size": 780,
+    "region": "Downtown Dubai",
+    "regionId": "52",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "Opera District",
+    "communityId": "420",
+    "developer": "Synthetic Developer 4",
+    "developerId": "13",
+    "isFurniture": "NONE",
+    "agent": {
+      "name": "Synthetic Agent C",
+      "email": "agent.c@example.invalid",
+      "phone": "+971509000003"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-07-07 10:00:00",
+    "updateTime": "2026-11-06 10:00:00",
+    "newParam": {
+      "handoverTime": "2029-06-01 00:00:00",
+      "completionStatus": "OFF_PLAN"
+    }
+  },
+  {
+    "id": 352008,
+    "propertyId": "1003100352008",
+    "title": "Synthetic 2BR Off-plan Apartment, Downtown Dubai",
+    "listingType": "NEW",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 3430000,
+    "bedRooms": 2,
+    "size": 1150,
+    "region": "Downtown Dubai",
+    "regionId": "52",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "Opera District",
+    "communityId": "420",
+    "developer": "Synthetic Developer 1",
+    "developerId": "10",
+    "isFurniture": "NONE",
+    "agent": {
+      "name": "Synthetic Agent A",
+      "email": "agent.a@example.invalid",
+      "phone": "+971509000001"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-06-03 10:00:00",
+    "updateTime": "2026-11-01 10:00:00",
+    "newParam": {
+      "handoverTime": "2027-04-01 00:00:00",
+      "completionStatus": "OFF_PLAN"
+    }
+  },
+  {
+    "id": 352009,
+    "propertyId": "1003100352009",
+    "title": "Synthetic 1BR Off-plan Apartment, Dubai Marina",
+    "listingType": "NEW",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 1480000,
+    "bedRooms": 1,
+    "size": 780,
+    "region": "Dubai Marina",
+    "regionId": "70",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "Marina Promenade",
+    "communityId": "601",
+    "developer": "Synthetic Developer 2",
+    "developerId": "11",
+    "isFurniture": "NONE",
+    "agent": {
+      "name": "Synthetic Agent B",
+      "email": "agent.b@example.invalid",
+      "phone": "+971509000002"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-09-18 10:00:00",
+    "updateTime": "2026-10-13 10:00:00",
+    "newParam": {
+      "handoverTime": "2029-05-01 00:00:00",
+      "completionStatus": "OFF_PLAN"
+    }
+  },
+  {
+    "id": 352010,
+    "propertyId": "1003100352010",
+    "title": "Synthetic 2BR Off-plan Apartment, Dubai Marina",
+    "listingType": "NEW",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 2010000,
+    "bedRooms": 2,
+    "size": 1150,
+    "region": "Dubai Marina",
+    "regionId": "70",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "Marina Promenade",
+    "communityId": "601",
+    "developer": "Synthetic Developer 3",
+    "developerId": "12",
+    "isFurniture": "NONE",
+    "agent": {
+      "name": "Synthetic Agent C",
+      "email": "agent.c@example.invalid",
+      "phone": "+971509000003"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-07-28 10:00:00",
+    "updateTime": "2026-10-21 10:00:00",
+    "newParam": {
+      "handoverTime": "2029-05-01 00:00:00",
+      "completionStatus": "OFF_PLAN"
+    }
+  },
+  {
+    "id": 352011,
+    "propertyId": "1003100352011",
+    "title": "Synthetic 1BR Ready Apartment, Dubai Marina",
+    "listingType": "SELL",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 1640000,
+    "bedRooms": 1,
+    "size": 820,
+    "region": "Dubai Marina",
+    "regionId": "70",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "Marina Promenade",
+    "communityId": "601",
+    "developer": "Synthetic Developer 4",
+    "developerId": "13",
+    "isFurniture": "SEMI",
+    "agent": {
+      "name": "Synthetic Agent A",
+      "email": "agent.a@example.invalid",
+      "phone": "+971509000001"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-06-02 10:00:00",
+    "updateTime": "2026-11-02 10:00:00",
+    "sellParam": {
+      "completionStatus": "COMPLETED",
+      "buildYear": "2018",
+      "bathrooms": 2
+    }
+  },
+  {
+    "id": 352012,
+    "propertyId": "1003100352012",
+    "title": "Synthetic 2BR Ready Apartment, Downtown Dubai",
+    "listingType": "SELL",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 3580000,
+    "bedRooms": 2,
+    "size": 1250,
+    "region": "Downtown Dubai",
+    "regionId": "52",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "Opera District",
+    "communityId": "420",
+    "developer": "Synthetic Developer 1",
+    "developerId": "10",
+    "isFurniture": "SEMI",
+    "agent": {
+      "name": "Synthetic Agent B",
+      "email": "agent.b@example.invalid",
+      "phone": "+971509000002"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-07-29 10:00:00",
+    "updateTime": "2026-10-26 10:00:00",
+    "sellParam": {
+      "completionStatus": "COMPLETED",
+      "buildYear": "2019",
+      "bathrooms": 3
+    }
+  },
+  {
+    "id": 352013,
+    "propertyId": "1003100352013",
+    "title": "Synthetic 4BR Ready Villa, Arabian Ranches",
+    "listingType": "SELL",
+    "propertyType": [
+      "VILLA"
+    ],
+    "status": "ACTIVE",
+    "price": 4090000,
+    "bedRooms": 4,
+    "size": 3200,
+    "region": "Arabian Ranches",
+    "regionId": "61",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "Arabian Ranches 3",
+    "communityId": "512",
+    "developer": "Synthetic Developer 2",
+    "developerId": "11",
+    "isFurniture": "SEMI",
+    "agent": {
+      "name": "Synthetic Agent C",
+      "email": "agent.c@example.invalid",
+      "phone": "+971509000003"
+    },
+    "photos": [],
+    "amenities": [
+      "Private Garden",
+      "Maid's Room"
+    ],
+    "createTime": "2026-07-24 10:00:00",
+    "updateTime": "2026-10-31 10:00:00",
+    "sellParam": {
+      "completionStatus": "COMPLETED",
+      "buildYear": "2024",
+      "bathrooms": 5
+    }
+  },
+  {
+    "id": 352014,
+    "propertyId": "1003100352014",
+    "title": "Synthetic 1BR For rent Apartment, Jumeirah Village Circle",
+    "listingType": "RENT",
+    "propertyType": [
+      "APARTMENT"
+    ],
+    "status": "ACTIVE",
+    "price": 57000,
+    "bedRooms": 1,
+    "size": 750,
+    "region": "Jumeirah Village Circle",
+    "regionId": "83",
+    "cityId": 41,
+    "cityName": "Dubai",
+    "community": "District 12",
+    "communityId": "701",
+    "developer": "Synthetic Developer 3",
+    "developerId": "12",
+    "isFurniture": "SEMI",
+    "agent": {
+      "name": "Synthetic Agent A",
+      "email": "agent.a@example.invalid",
+      "phone": "+971509000001"
+    },
+    "photos": [],
+    "amenities": [
+      "Shared Pool",
+      "Gym"
+    ],
+    "createTime": "2026-09-29 10:00:00",
+    "updateTime": "2026-10-25 10:00:00",
+    "rentParam": {
+      "completionStatus": "COMPLETED",
+      "rentalPeriod": "YEARLY"
+    }
+  }
+]

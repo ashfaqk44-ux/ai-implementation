@@ -53,6 +53,12 @@ class Settings(BaseSettings):
     llm_temperature: float = 0.0
     # Hard cap on output tokens per call, to keep API spend small.
     llm_max_tokens: int = Field(default=800, ge=1)
+    # Spend guard: the LLM service refuses further calls after this many in one process.
+    llm_max_calls_per_process: int = Field(default=50, ge=0)
+    # USD per 1M tokens, used only to log an estimated cost per call. Defaults are OpenAI's
+    # published gpt-4.1-mini list prices; update them when the model changes.
+    llm_price_input_per_mtok: float | None = 0.40
+    llm_price_output_per_mtok: float | None = 1.60
     openai_api_key: SecretStr | None = None
     anthropic_api_key: SecretStr | None = None
 
