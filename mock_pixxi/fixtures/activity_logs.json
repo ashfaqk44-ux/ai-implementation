@@ -1,0 +1,38 @@
+[
+  {
+    "id": 54001,
+    "leadId": 900002,
+    "createdBy": 2032,
+    "message": "Called client. Confirmed cash buyer, budget up to 4.5M, wants to move before school year starts in August. Prefers Arabian Ranches 3, flexible on townhouse.",
+    "type": "Note",
+    "properties": [],
+    "extend": null,
+    "viewingStartTime": null,
+    "viewingEndTime": null,
+    "createTime": "2026-11-02 14:30:00"
+  },
+  {
+    "id": 54002,
+    "leadId": 900003,
+    "createdBy": 2031,
+    "message": "No answer. Sent WhatsApp follow-up.",
+    "type": "Contact",
+    "properties": [],
+    "extend": null,
+    "viewingStartTime": null,
+    "viewingEndTime": null,
+    "createTime": "2026-09-01 10:00:00"
+  },
+  {
+    "id": 54003,
+    "leadId": 900004,
+    "createdBy": 2033,
+    "message": "Lead created from exhibition stand.",
+    "type": "System",
+    "properties": [],
+    "extend": null,
+    "viewingStartTime": null,
+    "viewingEndTime": null,
+    "createTime": "2026-11-05 16:20:00"
+  }
+]
