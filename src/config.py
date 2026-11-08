@@ -47,9 +47,19 @@ class Settings(BaseSettings):
     self_write_window_seconds: int = 120
 
     # --- LLM (C7). Optional until an agent needs it. ---
-    anthropic_api_key: SecretStr | None = None
-    llm_model: str = "claude-sonnet-5-5"
+    # Provider is switchable; the declared evaluation model is still open (docs/decisions.md).
+    llm_provider: Literal["openai", "anthropic"] = "openai"
+    llm_model: str = "gpt-4.1-mini"
     llm_temperature: float = 0.0
+    # Hard cap on output tokens per call, to keep API spend small.
+    llm_max_tokens: int = Field(default=800, ge=1)
+    openai_api_key: SecretStr | None = None
+    anthropic_api_key: SecretStr | None = None
+
+    @property
+    def llm_api_key(self) -> SecretStr | None:
+        """The key for the selected provider (None if not set)."""
+        return self.openai_api_key if self.llm_provider == "openai" else self.anthropic_api_key
 
     # --- Domain thresholds ---
     dormancy_days: int = 30

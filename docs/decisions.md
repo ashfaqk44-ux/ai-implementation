@@ -20,6 +20,7 @@ Plain-language record of design decisions and why they were made, for the thesis
 | 2026-11-08 | Webhooks | One callback URL per event, protected by a shared secret in the query string (`?key=`) | Pixxi webhook bodies do not include the event name, and no signature is documented. |
 | 2026-11-08 | Loop guard | The receiver ignores AI-tagged notes and reminders, and ignores `UPDATE_LEADS` on a lead the system wrote to within 120 s (configurable) | Worst-case assumption until checks 1–3 are verified. Trade-off: a human's lead update within that window is also suppressed, but their note still arrives through `ADD_LEAD_NOTE` (tested). |
 | 2026-11-08 | Timezone | Pixxi timestamps are read as Asia/Dubai | The API sends no timezone. To verify on first real access. |
+| 2026-11-09 | Model (update) | LLM provider is **switchable** in config (`LLM_PROVIDER=openai\|anthropic`, `LLM_MODEL`). Development uses OpenAI `gpt-4.1-mini`. The declared model for the final evaluation is **still open** and must be fixed before step 10. | The proposal allows Claude or GPT-4. An OpenAI key with a small budget is available now; no Anthropic key yet. `gpt-4.1-mini` is cheap, handles structured output well and stays in the GPT-4 family. Output is capped (`LLM_MAX_TOKENS`) and tests never call a real model, to keep spend low. |
 | 2026-11-08 | Agent 2 trigger (proposal) | `ADD_LEAD_NOTE` is the natural trigger for qualification | The event exists in the official API and fires exactly when a human logs a note. To confirm when building Agent 2. |
 
 ## Thesis text to update

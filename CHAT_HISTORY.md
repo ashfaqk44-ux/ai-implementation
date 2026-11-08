@@ -3,7 +3,7 @@
 Running record of the build sessions with Claude Code, so a new session can pick up where the last one stopped.
 **Claude: read this file, `README.md`, `docs/decisions.md` and `docs/api_findings.md` before doing anything.**
 
-Last updated: 2026-11-08
+Last updated: 2026-11-09
 
 ---
 
@@ -22,12 +22,12 @@ Master's thesis (MDT999, Design Science Research): an agentic AI middleware betw
 | 1. Repo, environment, config, key handling | ✅ Done |
 | 2. Pixxi API checks | ◐ Answered from official docs where possible (`docs/api_findings.md`); checks 1, 2, 3, 9 need a real account |
 | 3. Contracts, write client, webhook receiver | ✅ Done (62 tests pass; live HTTP run verified) |
-| **4. Seed dataset (10–20 leads) + Agent 1 via fixed-route orchestrator** | **⏭ NEXT. Needs an Anthropic API key** |
+| **4. Seed dataset (10–20 leads) + Agent 1 via fixed-route orchestrator** | **⏭ NEXT. Needs `OPENAI_API_KEY` in `.env` for the live run only** |
 | 5–10 | Not started |
 
 ## 3. Decisions made by the user (do not re-ask)
 
-- **LLM:** Claude (configurable in `src/config.py`). No Anthropic key yet.
+- **LLM:** switchable provider (`LLM_PROVIDER=openai|anthropic`). Dev uses OpenAI `gpt-4.1-mini`; user has an OpenAI key with only ~$5, so **minimise real calls** (tests use a fake LLM, cap tokens). Declared model for the evaluation is still open; decide before step 10. No Anthropic key.
 - **D3:** hybrid orchestrator (LLM chooses, code enforces rules). **D4:** plain-timer scheduler. **D5:** no vector store.
 - **Test bed:** no Pixxi account, so use a **mock that mirrors the official API as closely as possible**. Switch to the real API later through `.env` only.
 - **Never use `PUT /lead/update`.** It exists in the real API (the proposal wrongly said it doesn't). Not using it is now a *design choice*: human oversight, PDPL, reassignment risk, and omitted fields get cleared.
@@ -50,17 +50,21 @@ Master's thesis (MDT999, Design Science Research): an agentic AI middleware betw
 | `src/agents/base.py`, `src/orchestrator/state.py` | Contracts: `AgentResult`, `ReminderRequest`, `Agent` protocol, `LeadState` |
 | `mock_pixxi/app.py` + `fixtures/` | Mock Pixxi mirroring the spec; worst-case webhooks; forbidden PUT/DELETE calls recorded; `/mock/*` endpoints simulate humans; Authorize button on /docs |
 | `scripts/subscribe_webhooks.py` | Registers receiver callback URLs with Pixxi/mock (`--list`, `--unsubscribe`) |
+| `pyproject.toml`, `uv.lock` | Pinned dependencies, pytest config; managed with uv |
 | `tests/` | 62 tests, all in-process (`conftest.py` wires mock → receiver) |
 | `docs/` | `pixxi_openapi.yaml`, `api_findings.md`, `decisions.md` (incl. "Thesis text to update") |
 
 ## 5. How to run (Windows, PowerShell, from this folder)
 
 ```
-.venv\Scripts\python -m pytest -v                                                                   # tests
-.venv\Scripts\python -m uvicorn mock_pixxi.app:app --port 8001                                      # terminal 1: mock Pixxi
-.venv\Scripts\python -m uvicorn src.ingest.webhook_receiver:create_app --factory --port 8002         # terminal 2: receiver
-.venv\Scripts\python -m scripts.subscribe_webhooks                                                  # terminal 3: connect them (redo after mock restart)
+uv sync                                                                             # create/update .venv from uv.lock
+uv run pytest -v                                                                    # tests
+uv run uvicorn mock_pixxi.app:app --port 8001                                       # terminal 1: mock Pixxi
+uv run uvicorn src.ingest.webhook_receiver:create_app --factory --port 8002         # terminal 2: receiver
+uv run python -m scripts.subscribe_webhooks                                         # terminal 3: connect them (redo after mock restart)
 ```
+
+- Dependencies live in `pyproject.toml` (pinned; pytest in the `dev` group) with `uv.lock`. Add packages with `uv add <pkg>` / `uv add --dev <pkg>`, never pip.
 
 - Docs page: http://127.0.0.1:8001/docs. Click **Authorize** (top right), enter `mock-token`, click Authorize, then Close.
 - Calling the mock from code: URL must include `/pixxiapi` (e.g. `/pixxiapi/v1/agent/list`) and the header is `X-PIXXI-TOKEN: mock-token`, **not** `Authorization: Bearer`. Most reads are POST with a JSON body.
@@ -76,7 +80,7 @@ Master's thesis (MDT999, Design Science Research): an agentic AI middleware betw
 
 ## 7. Open items / next steps
 
-1. **Step 4:** generate a 10–20 lead synthetic seed set (Pixxi schema, Table 3.4 distribution), build the C7 LLM service (versioned prompts in `src/llm/`), Agent 1 (intake + Layer 1 profile from the lead's `property` object and `GET /pixxiapi/v1/{propertyId}`), and a fixed-route LangGraph orchestrator fed by accepted webhook events. Done when a synthetic `ADD_LEADS` event produces a structured bootstrap note. **Needs `ANTHROPIC_API_KEY` in `.env`.**
+1. **Step 4:** generate a 10–20 lead synthetic seed set (Pixxi schema, Table 3.4 distribution), build the C7 LLM service (versioned prompts in `src/llm/`), Agent 1 (intake + Layer 1 profile from the lead's `property` object and `GET /pixxiapi/v1/{propertyId}`), and a fixed-route LangGraph orchestrator fed by accepted webhook events. Done when a synthetic `ADD_LEADS` event produces a structured bootstrap note. **Live run needs `OPENAI_API_KEY` in `.env`; everything else is built and tested against a fake LLM.**
 2. When a Pixxi **test account with synthetic data only** exists: run the unverified checks listed at the bottom of `docs/api_findings.md`.
 3. Update the thesis text per `docs/decisions.md` → "Thesis text to update" (notably: no-PUT is a design choice, not an API limit).
 4. User to configure git identity and make the first commit.
@@ -91,3 +95,7 @@ Master's thesis (MDT999, Design Science Research): an agentic AI middleware betw
 - **Realigned the whole repo with the official API** and **built step 3**. 62 tests pass; live run confirmed AI note events ignored and human note events accepted.
 - Added an Authorize button to the mock's /docs page (the user hit 401s), and explained the `X-PIXXI-TOKEN` header and the `/pixxiapi` URL prefix.
 - Created this file.
+
+### Session 2 — 2026-11-09
+- Migrated from pip to **uv**: `requirements.txt` + `pytest.ini` replaced by `pyproject.toml` (Python 3.12 only, `package = false`, pytest in the `dev` group, `[tool.pytest.ini_options]`) and `uv.lock`. README layout updated. `uv sync` + `uv run pytest`: 62 passed.
+- User has an OpenAI key (~$5 credit) and no Anthropic key. Decided: provider switchable, dev on `gpt-4.1-mini`, declared evaluation model still open. Added `langchain-openai`, `LLM_PROVIDER`/`OPENAI_API_KEY`/`LLM_MAX_TOKENS` settings, decision log entry. 63 tests pass.

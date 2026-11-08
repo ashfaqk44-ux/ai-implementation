@@ -235,7 +235,7 @@ Ask the user before touching these.
 
 | ID | Decision | Default until told otherwise |
 | --- | --- | --- |
-| Model | Claude or GPT-4 for the PoC | Claude |
+| Model | Declared model for the evaluation: Claude or GPT-4 | Switchable; dev uses OpenAI gpt-4.1-mini (decided 2026-11-09), declared model still open |
 | D3 | Orchestrator: hybrid (LLM chooses, code enforces rules) or fully LLM-driven | Hybrid |
 | D4 | Scheduler: plain timer or a reasoning monitor | Plain timer |
 | D5 | Vector store S2 for property search: keep, drop, or adopt | Not built |
