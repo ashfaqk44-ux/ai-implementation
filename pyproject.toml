@@ -26,10 +26,15 @@ dependencies = [
 dev = [
     "pytest==9.2.0",
 ]
+# Live dashboard (ui/dashboard.py). Not part of the middleware itself.
+ui = [
+    "streamlit==1.67.0",
+]
 
 [tool.uv]
 # Application, not an installable library: uv only manages the environment.
 package = false
+default-groups = ["dev", "ui"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

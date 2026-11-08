@@ -61,8 +61,10 @@ Master's thesis (MDT999, Design Science Research): an agentic AI middleware betw
 | `scripts/subscribe_webhooks.py` | Registers receiver callback URLs with Pixxi/mock (`--list`, `--unsubscribe`) |
 | `scripts/check_llm.py` | One tiny LLM call to check the API key works |
 | `scripts/run_step4_demo.py` | In-process demo: seed mock + receiver + orchestrator + Agent 1 with the real LLM; prints each note and the cost |
+| `ui/dashboard.py`, `ui/data.py` | **Live Streamlit dashboard** (http://localhost:8501): metrics (leads, new in 24 h, AI notes, LLM calls/spend), leads table with Layer 1 status, lead detail with AI note cards and human notes, webhook feed (accepted/ignored + reason), orchestrator runs. Sidebar buttons (mock only): new lead arrives, agent logs a note, reset. `ui/data.py` holds the testable data functions |
+| `scripts/dev_up.ps1` | Starts mock (seed data) + receiver/orchestrator + subscriptions + dashboard in separate windows; refuses if ports 8001/8002/8501 are busy |
 | `pyproject.toml`, `uv.lock` | Pinned dependencies, pytest config (`live` marker deselected by default) |
-| `tests/` | 88 offline tests + 1 `live` test. `conftest.py` wires mock → receiver; `make_pipeline` wires seed mock → receiver → orchestrator |
+| `tests/` | 96 offline tests + 1 `live` test. `conftest.py` wires mock → receiver; `make_pipeline` wires seed mock → receiver → orchestrator |
 | `docs/` | `pixxi_openapi.yaml`, `api_findings.md`, `decisions.md` (incl. "Thesis text to update") |
 
 ## 5. How to run (Windows, PowerShell, from this folder)
@@ -75,6 +77,8 @@ uv run python -m scripts.check_llm              # is the API key OK? (~13 tokens
 uv run python -m scripts.run_step4_demo         # step 4 demo, 5 new leads (~$0.004); --limit 1 or --lead 910008
 uv run python data/synthetic/generate_seed.py   # regenerate the seed set (deterministic)
 ```
+
+**Live dashboard (easiest):** `powershell -ExecutionPolicy Bypass -File scripts\dev_up.ps1`, then open http://localhost:8501 and click **➕ New lead arrives** (≈ $0.0008 each). Or start the three servers below by hand and run `uv run streamlit run ui/dashboard.py`.
 
 Three-terminal version over real HTTP (agents run on each accepted webhook; LLM calls cost credit):
 
@@ -101,6 +105,9 @@ uv run python -m scripts.subscribe_webhooks                                     
 - Starlette's TestClient uses `httpx2`, so code catches the project's own `PixxiError`, never httpx exception classes.
 - `Settings.model_copy(update=...)` skips validation: pass secrets as `SecretStr(...)`, not plain strings.
 - `AgentNote` uses the alias `schema`; dump with `by_alias=True` whenever the dict is validated again (bit us in the orchestrator).
+- **Stale servers:** on 2026-11-09 the user still had old servers from step 3 on 8001 (mock with default fixtures) and 8002 (`src.ingest.webhook_receiver`, which runs no agents). A new server on the same port then fails with WinError 10048. Check with `netstat -ano | findstr :8002` and stop with `taskkill /PID <pid> /T /F`. `scripts/dev_up.ps1` checks this.
+- After `POST /mock/reset` (or restarting the mock) the webhook subscriptions are gone: rerun `scripts.subscribe_webhooks`.
+- Streamlit 1.67: use `width="stretch"`, not the deprecated `use_container_width`. `AppTest` (`streamlit.testing.v1`) can drive the dashboard headlessly for checks.
 - Pixxi quirks: ids are sometimes strings, `communityId` can be `"null"`, `bedRooms` can be `-1`, listing pages have no page count, and lead activity-log pages use different key names (all handled in `models.py`).
 
 ## 7. Open items / next steps
@@ -135,3 +142,5 @@ uv run python -m scripts.subscribe_webhooks                                     
   - Results: 88 offline tests + 1 live test pass. Demo: 5 notes, 0 forbidden calls, all self-caused webhooks ignored.
   - Total OpenAI spend this session ≈ **$0.01** (one Agent 1 call ≈ $0.0008, about 1.1K tokens).
   - Decisions recorded in `docs/decisions.md` (seed dataset, Agent 1 design, LLM inputs, confirmation prompt, idempotency, orchestrator, prompt versioning, prompt v2, spend control). `data/audit/` added to `.gitignore`.
+- Explained the whole thesis in plain language (user asked "explain like I'm a donkey").
+- **Built the live dashboard** (user chose Streamlit + simulate buttons): `ui/dashboard.py`, `ui/data.py`, 8 new offline tests (96 total), `scripts/dev_up.ps1`, Streamlit pinned in a `ui` dependency group (`default-groups = ["dev", "ui"]`). Verified end to end on spare ports 8011/8012 with Streamlit `AppTest`: a button click created a lead, Agent 1's note card and questions appeared, the feed showed `ADD_LEADS` accepted and the self-caused `ADD_LEAD_NOTE`/`UPDATE_LEADS` ignored; a human note was accepted with `no_route` (Agent 2 not built yet). Spend for the check ≈ $0.002. Logged LLM spend on this machine so far ≈ **$0.014**.

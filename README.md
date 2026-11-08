@@ -84,7 +84,7 @@ pixxi-agents/
   pyproject.toml            # dependencies + pytest config (managed with uv)
   uv.lock
   .env.example              # PIXXI_TOKEN, WEBHOOK_SECRET, ANTHROPIC_API_KEY (never committed)
-  scripts/                  # subscribe_webhooks.py, check_llm.py, run_step4_demo.py
+  scripts/                  # subscribe_webhooks.py, check_llm.py, run_step4_demo.py, dev_up.ps1
   src/
     config.py               # model name, dormancy days, thresholds, paths
     main.py                 # wires receiver -> orchestrator -> agents (uvicorn src.main:create_app --factory)
@@ -96,6 +96,7 @@ pixxi-agents/
     llm/                    # C7 service, prompt templates (versioned)
     audit/                  # structured note format and logging
   mock_pixxi/               # fake Pixxi server and fixtures
+  ui/                       # live Streamlit dashboard (viewer + mock simulation; not part of C1-C8)
   data/synthetic/           # lead generator, annotated notes, ground truth (seed/: 16-lead step 4 set)
   eval/                     # scenarios, metric scripts, run logs
   docs/
